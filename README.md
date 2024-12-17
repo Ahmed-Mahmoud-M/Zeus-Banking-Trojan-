@@ -97,6 +97,17 @@ Download the trojan from theZoo github repo [here](https://github.com/ytisf/theZ
 
   4-Analyze Zeus-related Network Connections :
 
+  	python volatility.py -f memorydump.raw --profile=Win7SP1x64 netscan
+
+
+  5- Use filescan to locate files related to Zeus:
+  ![image](https://github.com/user-attachments/assets/37dbbd94-c152-4ed9-aadf-033b101efa88)
+
+  6-Check Registry Keys for Zeus persistence:
+  ![image](https://github.com/user-attachments/assets/1c6a043a-d49b-4806-a0ef-364e637fb0e7)
+
+
+
 	
 
 
