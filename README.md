@@ -61,13 +61,53 @@ Download the trojan from theZoo github repo [here](https://github.com/ytisf/theZ
 1- List Running Processes :
 	python .\volatility3\vol.py -f .\zeus2x4.vmem windows.pslist
 
- 	![image](https://github.com/user-attachments/assets/5eff3fb1-ca10-4d9f-a1aa-8e3db9ba7578)
+ ![image](https://github.com/user-attachments/assets/5eff3fb1-ca10-4d9f-a1aa-8e3db9ba7578)
 
 
    	KeyObservations:
     		1.System Processes: The list includes essential system processes like System, smss.exe, csrss.exe, winlogon.exe, and lsass.exe, which are critical for Windows operation. These processes are normal in a running system.
       		2. Unusual Processes: The presence of processes like ImmunityDebugger, nifek_locked.exe, and vaelh.exe suggests that there may be debugging or potentially malicious activity.
 		3.Processes with Suspicious Names: Specifically, processes like b98679df6defbb3, ihah.exe, and nifek_locked.exe have non-standard names, which could indicate hidden or malicious processes.
+
+
+  2- Detect hidden processes:
+  		 python .\volatility3\vol.py -f .\zeus2x4.vmem windows.psxview
+
+![image](https://github.com/user-attachments/assets/3198c230-e693-44b1-a9d4-bf485b61df1a)
+
+
+	keyObservation: Some processes, such as ImmunityDebugger, prl_cc.exe, and svchost.exe, are flagged as False in pslist or psscan. This suggests they are potentially hidden or masked from normal process listing mechanisms.
+
+     
+
+      
+
+  3- Check for injected Processes:
+  		python .\volatility3\vol.py -f .\zeus2x4.vmem windows.malfind 
+    
+![image](https://github.com/user-attachments/assets/b9dc494f-ab22-4acc-9ae4-6f066925ba1b)
+
+
+		KeyObservations :
+  			1.Suspicious Pages Found: Highlight that the output shows processes with suspicious memory regions marked as PAGE_EXECUTE_READ, which is often associated with potential malicious code or rootkits.
+     			2.Several system processes (e.g., csrss.exe, winlogon.exe, svchost.exe, etc.) have been flagged with suspicious memory regions.
+			3. These hex values (e.g,. c1 00 00 00 00 01...) show potentially injected shellcode or malicious content.
+
+
+
+  4-Analyze Zeus-related Network Connections :
+
+	
+
+
+
+   
+
+      		
+
+
+    		
+  	
 
 
 
