@@ -102,10 +102,12 @@ Download the trojan from theZoo github repo [here](https://github.com/ytisf/theZ
 
   5- Use filescan to locate files related to Zeus:
   ![image](https://github.com/user-attachments/assets/37dbbd94-c152-4ed9-aadf-033b101efa88)
+  The output shows a list of files loaded into memory, including standard system files like tcpip6.sys, oleaut32.dll, and ntdll.dll
 
   6-Check Registry Keys for Zeus persistence:
   ![image](https://github.com/user-attachments/assets/1c6a043a-d49b-4806-a0ef-364e637fb0e7)
 
+these registry keys are located within the NTUSER.DAT hive for the Administrator user and represent persistent, non-volatile settings. The last write time for the keys suggests that user-specific settings were modified regularly between 2009 and 2010. There are no volatile keys, indicating that the settings are retained across reboots. The Environment, Identities, and Keyboard Layout keys could contain additional useful information for forensic investigation, such as environment variables or user credentials.
 
 
 	
