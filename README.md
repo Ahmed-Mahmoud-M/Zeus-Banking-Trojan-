@@ -52,3 +52,32 @@ Download the trojan from theZoo github repo [here](https://github.com/ytisf/theZ
 - Logs created
 
 <img src="https://github.com/user-attachments/assets/1c009d74-817c-420d-8292-9acc18cc1757">
+
+
+
+## volatility
+##### Capture a memory dump from the infected VM by using virtualboxManager.exe from "C:\Program Files\Oracle\VirtualBox" using debugvm (here the .vmem are provided so we did not do this step ) then we use volatility to Identify active , injected processes  and Analyze Zeus-related network . The following section will show the details of each step 
+
+1- List Running Processes :
+	python .\volatility3\vol.py -f .\zeus2x4.vmem windows.pslist
+
+ 	![image](https://github.com/user-attachments/assets/5eff3fb1-ca10-4d9f-a1aa-8e3db9ba7578)
+
+
+   	KeyObservations:
+    		1.System Processes: The list includes essential system processes like System, smss.exe, csrss.exe, winlogon.exe, and lsass.exe, which are critical for Windows operation. These processes are normal in a running system.
+      		2. Unusual Processes: The presence of processes like ImmunityDebugger, nifek_locked.exe, and vaelh.exe suggests that there may be debugging or potentially malicious activity.
+		3.Processes with Suspicious Names: Specifically, processes like b98679df6defbb3, ihah.exe, and nifek_locked.exe have non-standard names, which could indicate hidden or malicious processes.
+
+
+
+  
+
+
+  
+
+
+ 
+ 
+
+
