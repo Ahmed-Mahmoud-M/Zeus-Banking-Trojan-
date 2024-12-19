@@ -53,6 +53,20 @@ Download the trojan from theZoo github repo [here](https://github.com/ytisf/theZ
 
 <img src="https://github.com/user-attachments/assets/1c009d74-817c-420d-8292-9acc18cc1757">
 
+## Splunk
+
+Ingesting Suricata logs and system logs into Splunk.
+![Screenshot 2024-12-19 160901](https://github.com/user-attachments/assets/81a6ba5e-eb30-47fe-9456-c9e95ea254eb)
+
+Creating correlation rules in Splunk to detect abnormal outbound traffic. We used event_type = alert, which returned 4 events.
+![Screenshot 2024-12-19 161423](https://github.com/user-attachments/assets/f05e8863-ebfa-4dde-9966-7af64a110c1a)
+![Screenshot 2024-12-19 192742](https://github.com/user-attachments/assets/3d08dade-b160-475c-8fae-e2e962ee0922)
+
+Upon inspecting those 4 events, we can see "Warning Zeus Trojan - Potentially Bad Traffic" 
+![Screenshot 2024-12-19 192800](https://github.com/user-attachments/assets/4060ece9-b5b7-40a1-895e-3a4f9d7547fa)
+
+Creating visual dashboards in Splunk to track malicious activity. Here we see the times at which the alerts where generated.
+![Screenshot 2024-12-19 193023](https://github.com/user-attachments/assets/af2c4e9d-dbf3-4271-b96a-db7ba0e48450)
 
 
 ## volatility
