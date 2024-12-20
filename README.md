@@ -129,11 +129,11 @@ This part of the documentation covers the following points:
 * Scan the infected system and memory dumps with YARA to identify Zeus artifacts.
 
 ### 1. Write custom YARA rules to detect Zeus-related patterns in binaries, configuration files, and memory dumps
-We found one binary file in particular can identify the YARA rules:
+We found one executable file in particular and we tried to identify the trojan in it with YARA rules:
 ```
 rule DetectZeusTrojan {
     meta:
-        Author = "Mohamed Moataz"
+        author = "Mohamed Moataz"
         description = "Proactive Security Project: Detecting the Zeus Banking Trojan"
     strings:
         $file_name = "invoice_2318362983713_823931342io.pdf.exe"
@@ -153,13 +153,31 @@ rule DetectZeusTrojan {
 
 **Condition Section:** Defines conditions for the rule to work and identify the presence of the trojan.
 - *$file_name and $PE_header at 0 and $function1_str or $function2_hex*: The rule is true when the filename is the same as the one we have, the PE_header is at the file's start, and the file contains one of the 2 functions related to the trojan.
+---
+We also wrote another set of rules to detect the trojan from patterns in the memory dump.
+```
+rule ZeusBankingTrojan {
+    meta:
+        author = "Mohamed Moataz"
+        description = "Detects Zeus Banking Trojan in memory dump"
+    strings:
+        $a1 = "Zeus" nocase
+        $a2 = "ZeuS" nocase
+        $a3 = "ihah.exe" nocase
+        $a4 = "nifek_locked.exe" nocase
+        $a5 = "b98679df6defbb3" nocase
+        $a6 = { c1 00 00 00 00 01 00 00 ff ee ff ee 09 00 00 00}
+    condition:
+        any of ($a*)
+}
+```
       		
 ### 2. Scan the infected system and memory dumps with YARA to identify Zeus artifacts
 Using: `yara64 zeus_rule.yara invoice_2318362983713_823931342io.pdf.exe -s -w -p 32`
 
 ![image](https://github.com/user-attachments/assets/aa949c5e-983a-49b7-9b96-b51868b8b1c3)
 
-This command is used to detect the Zeus trojan based on unique strings with the above yara rules.
+This command is used to detect the Zeus trojan based on unique strings in the executable file with the above yara rules.
 
 Flags:
 ```
@@ -167,8 +185,11 @@ Flags:
 -w : Ignore warnings.
 -p 32 : Allocate 32 threads
 ```
-    		
-  	
+
+And we also detect the trojan in the memory dump
+
+![image](https://github.com/user-attachments/assets/0a67cce2-3425-4e77-a4b4-5481b49b8148)
+
 
 
 
