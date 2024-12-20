@@ -1,4 +1,4 @@
-# Zeus Banking Trojan
+![image](https://github.com/user-attachments/assets/7c87d6cd-8230-48d4-b9b0-23c3f8766870)# Zeus Banking Trojan
 Detect and analyze the Zeus Banking Trojan using various tools and techniques, including malware simulation, network monitoring, memory analysis, and signature-based detection
 ### Zeus Trojan Overview
 One of the most high-profile pieces of malware in the current threat landscape is [Zeus/Zbot](https://en.wikipedia.org/wiki/Zeus_%28malware%29), a nasty trojan that has been employed by botnet operators around the world to steal banking credentials and other personal data, participate in click-fraud schemes, and likely numerous other criminal enterprises.
@@ -186,7 +186,8 @@ Flags:
 -p 32 : Allocate 32 threads
 ```
 
-And we also detect the trojan in the memory dump
+And we also detect the trojan in the memory dump using:
+`vol -f .\zeus2x4.vmem windows.vadyarascan.VadYaraScan .\zeus.yar`
 
 ![image](https://github.com/user-attachments/assets/0a67cce2-3425-4e77-a4b4-5481b49b8148)
 
