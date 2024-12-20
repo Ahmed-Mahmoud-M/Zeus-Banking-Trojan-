@@ -73,9 +73,8 @@ Creating visual dashboards in Splunk to track malicious activity. Here we see th
 ##### Capture a memory dump from the infected VM by using virtualboxManager.exe from "C:\Program Files\Oracle\VirtualBox" using debugvm (here the .vmem are provided so we did not do this step ) then we use volatility to Identify active , injected processes  and Analyze Zeus-related network . The following section will show the details of each step 
 
 
-the steps will be here : 
-	https://github.com/Ahmed-Mahmoud-M/Zeus-Banking-Trojan-/blob/main/proactive%20project%20volatility.pdf
-	
+the steps will be here : https://github.com/Ahmed-Mahmoud-M/Zeus-Banking-Trojan-/blob/main/proactive%20project%20volatility.pdf
+the video explanation steps will be here : https://drive.google.com/file/d/1lac_CNT9xceep_gzy-DdLWDcpDjFR7tL/view?usp=sharing
 
 
 
