@@ -128,6 +128,8 @@ This part of the documentation covers the following points:
 * Write custom YARA rules to detect Zeus-related patterns in binaries, configuration files, and memory dumps.
 * Scan the infected system and memory dumps with YARA to identify Zeus artifacts.
 
+Video explanation: https://drive.google.com/file/d/1tjLoOkXVbe-qzelb2oo-4ghIO1-fTnrt/view?usp=sharing
+
 ### 1. Write custom YARA rules to detect Zeus-related patterns in binaries, configuration files, and memory dumps
 We found one executable file in particular and we tried to identify the trojan in it with YARA rules:
 ```
