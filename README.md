@@ -73,6 +73,11 @@ Creating visual dashboards in Splunk to track malicious activity. Here we see th
 ##### Capture a memory dump from the infected VM by using virtualboxManager.exe from "C:\Program Files\Oracle\VirtualBox" using debugvm (here the .vmem are provided so we did not do this step ) then we use volatility to Identify active , injected processes  and Analyze Zeus-related network . The following section will show the details of each step 
 
 
+the steps will be here : 
+	
+	
+
+
 
 ## YARA Rules
 This part of the documentation covers the following points:
