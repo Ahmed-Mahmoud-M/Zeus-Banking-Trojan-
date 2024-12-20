@@ -123,16 +123,50 @@ Creating visual dashboards in Splunk to track malicious activity. Here we see th
 
 these registry keys are located within the NTUSER.DAT hive for the Administrator user and represent persistent, non-volatile settings. The last write time for the keys suggests that user-specific settings were modified regularly between 2009 and 2010. There are no volatile keys, indicating that the settings are retained across reboots. The Environment, Identities, and Keyboard Layout keys could contain additional useful information for forensic investigation, such as environment variables or user credentials.
 
+## YARA Rules
+This part of the documentation covers the following points:
+* Write custom YARA rules to detect Zeus-related patterns in binaries, configuration files, and memory dumps.
+* Scan the infected system and memory dumps with YARA to identify Zeus artifacts.
 
-	
+### 1. Write custom YARA rules to detect Zeus-related patterns in binaries, configuration files, and memory dumps
+We found one binary file in particular can identify the YARA rules:
+```
+rule DetectZeusTrojan {
+    meta:
+        Author = "Mohamed Moataz"
+        description = "Proactive Security Project: Detecting the Zeus Banking Trojan"
+    strings:
+        $file_name = "invoice_2318362983713_823931342io.pdf.exe"
+	$PE_header = "MZ"
+        $function1_str = "CellrotoCrudUntohighCols" ascii
+        $function2_hex = {43 61 6D 65 56 61 6C 65 57 61 75 6C 65 72}
+    condition:
+        $file_name and $PE_header at 0 and $function1_str or $function2_hex
+}
+```
+#### Explanation:
+**Strings Section:** The strings section defines the patterns to look for within the file.
+- *$file_name = "invoice_2318362983713_823931342io.pdf.exe"*: Malware file name.
+- *$function1_str = "CellrotoCrudUntohighCols" ascii*: After previous analyzing for the trojan, we found that this string represents a suspected function name or DLL functionality that the malware might use, defined as an ASCII string. So we use YARA to look for it so we can detect this trojan.
+- *$PE_header = "MZ"*: The "MZ" string is related to the header that indicates a file is a Portable Executable. We need that because a trojan is an executable file.
+- *$function2_hex = {43 61 6D 65 56 61 6C 65 72 57 61 75 6C 65 72}*: This is a hexadecimal string which represents a sequence of bytes that represent a unique function name in the Zeus banking trojan, which is "CameValeWauler".
 
-
-
-   
-
+**Condition Section:** Defines conditions for the rule to work and identify the presence of the trojan.
+- *$file_name and $PE_header at 0 and $function1_str or $function2_hex*: The rule is true when the filename is the same as the one we have, the PE_header is at the file's start, and the file contains one of the 2 functions related to the trojan.
       		
+### 2. Scan the infected system and memory dumps with YARA to identify Zeus artifacts
+Using: `yara64 zeus_rule.yara invoice_2318362983713_823931342io.pdf.exe -s -w -p 32`
 
+![image](https://github.com/user-attachments/assets/aa949c5e-983a-49b7-9b96-b51868b8b1c3)
 
+This command is used to detect the Zeus trojan based on unique strings with the above yara rules.
+
+Flags:
+```
+-s : Print matched strings to stdout.
+-w : Ignore warnings.
+-p 32 : Allocate 32 threads
+```
     		
   	
 
