@@ -72,56 +72,7 @@ Creating visual dashboards in Splunk to track malicious activity. Here we see th
 ## volatility
 ##### Capture a memory dump from the infected VM by using virtualboxManager.exe from "C:\Program Files\Oracle\VirtualBox" using debugvm (here the .vmem are provided so we did not do this step ) then we use volatility to Identify active , injected processes  and Analyze Zeus-related network . The following section will show the details of each step 
 
-1- List Running Processes :
-	python .\volatility3\vol.py -f .\zeus2x4.vmem windows.pslist
 
- ![image](https://github.com/user-attachments/assets/5eff3fb1-ca10-4d9f-a1aa-8e3db9ba7578)
-
-
-   	KeyObservations:
-    		1.System Processes: The list includes essential system processes like System, smss.exe, csrss.exe, winlogon.exe, and lsass.exe, which are critical for Windows operation. These processes are normal in a running system.
-      		2. Unusual Processes: The presence of processes like ImmunityDebugger, nifek_locked.exe, and vaelh.exe suggests that there may be debugging or potentially malicious activity.
-		3.Processes with Suspicious Names: Specifically, processes like b98679df6defbb3, ihah.exe, and nifek_locked.exe have non-standard names, which could indicate hidden or malicious processes.
-
-
-  2- Detect hidden processes:
-  		 python .\volatility3\vol.py -f .\zeus2x4.vmem windows.psxview
-
-![image](https://github.com/user-attachments/assets/3198c230-e693-44b1-a9d4-bf485b61df1a)
-
-
-	keyObservation: Some processes, such as ImmunityDebugger, prl_cc.exe, and svchost.exe, are flagged as False in pslist or psscan. This suggests they are potentially hidden or masked from normal process listing mechanisms.
-
-     
-
-      
-
-  3- Check for injected Processes:
-  		python .\volatility3\vol.py -f .\zeus2x4.vmem windows.malfind 
-    
-![image](https://github.com/user-attachments/assets/b9dc494f-ab22-4acc-9ae4-6f066925ba1b)
-
-
-		KeyObservations :
-  			1.Suspicious Pages Found: Highlight that the output shows processes with suspicious memory regions marked as PAGE_EXECUTE_READ, which is often associated with potential malicious code or rootkits.
-     			2.Several system processes (e.g., csrss.exe, winlogon.exe, svchost.exe, etc.) have been flagged with suspicious memory regions.
-			3. These hex values (e.g,. c1 00 00 00 00 01...) show potentially injected shellcode or malicious content.
-
-
-
-  4-Analyze Zeus-related Network Connections :
-
-  	python volatility.py -f memorydump.raw --profile=Win7SP1x64 netscan
-
-
-  5- Use filescan to locate files related to Zeus:
-  ![image](https://github.com/user-attachments/assets/37dbbd94-c152-4ed9-aadf-033b101efa88)
-  The output shows a list of files loaded into memory, including standard system files like tcpip6.sys, oleaut32.dll, and ntdll.dll
-
-  6-Check Registry Keys for Zeus persistence:
-  ![image](https://github.com/user-attachments/assets/1c6a043a-d49b-4806-a0ef-364e637fb0e7)
-
-these registry keys are located within the NTUSER.DAT hive for the Administrator user and represent persistent, non-volatile settings. The last write time for the keys suggests that user-specific settings were modified regularly between 2009 and 2010. There are no volatile keys, indicating that the settings are retained across reboots. The Environment, Identities, and Keyboard Layout keys could contain additional useful information for forensic investigation, such as environment variables or user credentials.
 
 ## YARA Rules
 This part of the documentation covers the following points:
