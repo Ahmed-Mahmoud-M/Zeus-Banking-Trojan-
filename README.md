@@ -17,6 +17,8 @@ Download the trojan from theZoo github repo [here](https://github.com/ytisf/theZ
 ---
 ## Suricata
 ##### Using Suricata to monitor network traffic and use the default rules to detect common threats:
+- See the video here: https://youtu.be/91Nsmrs6PYs
+
 - Set the rules to the default on the `suricata.yaml`
 
 ![image](https://github.com/user-attachments/assets/4f5df0f4-1171-49c9-b91c-6190293b745d)
