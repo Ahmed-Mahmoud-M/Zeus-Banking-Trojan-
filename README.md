@@ -56,6 +56,7 @@ Download the trojan from theZoo github repo [here](https://github.com/ytisf/theZ
 <img src="https://github.com/user-attachments/assets/1c009d74-817c-420d-8292-9acc18cc1757">
 
 ## Splunk
+Video: https://drive.google.com/file/d/1CanA8VcTJibNGryDi-giK6CpGPr-IES6/view?usp=drive_link
 
 Ingesting Suricata logs and system logs into Splunk.
 ![Screenshot 2024-12-19 160901](https://github.com/user-attachments/assets/81a6ba5e-eb30-47fe-9456-c9e95ea254eb)
